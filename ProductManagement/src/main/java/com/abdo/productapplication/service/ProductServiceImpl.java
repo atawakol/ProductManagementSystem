@@ -23,13 +23,13 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public void createProduct(Product prod) {
-		// TODO Auto-generated method stub
 		
+		productRepository.save(prod);
 	}
 
 	@Override
 	public void updateProduct(Product prod) {
-		// TODO Auto-generated method stub
+		productRepository.save(prod);
 		
 	}
 
@@ -53,14 +53,14 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public Product findById(long prodId) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return productRepository.findOne(prodId);
 	}
 
 	@Override
-	public Product findById(String prodName) {
-		// TODO Auto-generated method stub
-		return null;
+	public Product findByName(String prodName) {
+		
+		return productRepository.findByName(prodName);
 	}
 	
 	

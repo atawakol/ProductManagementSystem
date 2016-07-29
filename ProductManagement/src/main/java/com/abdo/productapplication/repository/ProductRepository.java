@@ -6,4 +6,6 @@ import com.abdo.productapplication.domain.Product;
 
 public interface ProductRepository extends CrudRepository<Product, Long> {
 
+	Product findByName(String name);
+	
 }
