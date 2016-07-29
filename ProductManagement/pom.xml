@@ -4,6 +4,7 @@
   <groupId>com.abdo.test</groupId>
   <artifactId>ProductManagement</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
   <name>ProductManagement</name>
   <description>Handle product operations</description>
   
@@ -55,7 +56,6 @@
 	</build>
 
 	<!-- Add Spring repositories -->
-	<!-- (you don't need this if you are using a .RELEASE version) -->
 	<repositories>
 		<repository>
 			<id>spring-snapshots</id>
