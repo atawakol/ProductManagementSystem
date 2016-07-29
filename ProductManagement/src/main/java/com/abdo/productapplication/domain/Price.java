@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Price {
 
@@ -20,6 +22,7 @@ public class Price {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="PRODUCTID", nullable=false)
+	@JsonIgnore
 	private Product product;
 
 	
