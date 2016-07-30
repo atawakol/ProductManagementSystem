@@ -1,5 +1,7 @@
 package com.abdo.productapplication.domain;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,8 +19,11 @@ public class Price {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long priceId;
 	
-	/** it is better to move this to another entity that maps to a lookup table that contains all currencies. */
+	/** it is better to move this to another entity that maps to a lookup table that contains all currencies.
+	 * I have just decided to add it here as a string for simplicity. */
 	private String currency;
+	
+	private BigDecimal price;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="PRODUCTID", nullable=false)
@@ -43,12 +48,21 @@ public class Price {
 		this.currency = currency;
 	}
 
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+
 	public Product getProduct() {
 		return product;
 	}
-
+	
 	public void setProduct(Product product) {
 		this.product = product;
+		product.getPriceList().add(this);
 	}
 	
 	

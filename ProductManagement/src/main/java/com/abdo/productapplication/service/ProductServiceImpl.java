@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.abdo.productapplication.domain.Product;
+import com.abdo.productapplication.domain.Price;
 import com.abdo.productapplication.repository.ProductRepository;
 
 @Service
@@ -17,6 +18,7 @@ import com.abdo.productapplication.repository.ProductRepository;
 public class ProductServiceImpl implements ProductService{
 	
 	private static final Logger LOG = LoggerFactory.getLogger(ProductService.class);
+	private static final String WILD_CARD = "%";
 
 	@Autowired
 	private ProductRepository productRepository;
@@ -58,11 +60,22 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public Product findByName(String prodName) {
+	public List<Product> findByName(String prodName) {
 		
 		return productRepository.findByName(prodName);
 	}
 	
+	@Override
+	public List<Product> findByDescription(String desc) {
+		
+		return productRepository.findByDescriptionLike(WILD_CARD + desc + WILD_CARD);
+	}
+	
+	@Override
+	public void addPriceToProduct(Price price) {
+		
+		//productRepository;
+	}
 	
 	public ProductRepository getProductRepository() {
 		return productRepository;
