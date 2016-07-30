@@ -78,24 +78,44 @@ public class ProductController {
     	return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
     }
     
+    /**
+     * 
+     * Create Product.
+     * 
+     * If there is any error. the class ValidationHandler is used.
+     * 
+     * @param product
+     * @return
+     */
     @RequestMapping(method=RequestMethod.POST, value="/products/")
-    public ResponseEntity<Void> createProduct(@Valid @RequestBody Product product, BindingResult br) {
+    //public ResponseEntity<Void> createProduct(@Valid @RequestBody Product product, BindingResult br) {
+    public ResponseEntity<Void> createProduct(@Valid @RequestBody Product product) {
     	
-    	if (br.hasErrors()) {
-	    	return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
-    	} else {
+//    	if (br.hasErrors()){
+//        	return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+//    	}
     	
-	    	LOG.debug("create product .... ");
-	    	productService.createProduct(product);
+    	LOG.debug("create product .... ");
+    	productService.createProduct(product);
+    	
+    	HttpHeaders headers = new HttpHeaders();
+        headers.set("New Product ID", String.valueOf(product.getProductId()));
+    	return new ResponseEntity<Void>(HttpStatus.CREATED);
 	    	
-	    	HttpHeaders headers = new HttpHeaders();
-	        headers.set("New Product ID", String.valueOf(product.getProductId()));
-	    	return new ResponseEntity<Void>(HttpStatus.CREATED);
-    	}
     }
     
+    /**
+     * 
+     * Update Product.
+     * 
+     * If there is any error. the class ValidationHandler is used.
+     * 
+     * @param id
+     * @param product
+     * @return
+     */
     @RequestMapping(method=RequestMethod.PUT, value="/products/{productId}/")
-    public ResponseEntity<Product> updateProduct(@PathVariable("productId") long id, @RequestBody Product product) {
+    public ResponseEntity<Product> updateProduct(@PathVariable("productId") long id, @Valid @RequestBody Product product) {
         
     	LOG.debug("update product product .... ");
     	
