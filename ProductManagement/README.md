@@ -43,7 +43,8 @@ Import as *Existing Maven Project* and run it as *Spring Boot App*.
 - Run the application and go on http://localhost:8080/
 - Use the following urls to invoke rest services:
 
-	* `/products/`: Get a list of all products and all of its details (price and tags).
+	* Get a list of all products and all of its details (price and tags):
+		- `/products/`
 	* `/products/[id]/`: Get details about a product by id.
 	* `/products/filters/?description=[description]`: retrieve a list of products that match the description criteria.
 	* `/products/filters/?name=[name]`: retrieve a list of products that match the name criteria.
