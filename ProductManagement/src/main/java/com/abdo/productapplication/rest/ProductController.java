@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.abdo.productapplication.domain.Price;
 import com.abdo.productapplication.domain.Product;
@@ -89,7 +90,7 @@ public class ProductController {
      */
     @RequestMapping(method=RequestMethod.POST, value="/products/")
     //public ResponseEntity<Void> createProduct(@Valid @RequestBody Product product, BindingResult br) {
-    public ResponseEntity<Void> createProduct(@Valid @RequestBody Product product) {
+    public ResponseEntity<Void> createProduct(@Valid @RequestBody Product product, UriComponentsBuilder uric) {
     	
 //    	if (br.hasErrors()){
 //        	return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
@@ -99,8 +100,8 @@ public class ProductController {
     	productService.createProduct(product);
     	
     	HttpHeaders headers = new HttpHeaders();
-        headers.set("New Product ID", String.valueOf(product.getProductId()));
-    	return new ResponseEntity<Void>(HttpStatus.CREATED);
+        headers.setLocation(uric.path("/products/{id}/").buildAndExpand(product.getProductId()).toUri());
+    	return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	    	
     }
     
