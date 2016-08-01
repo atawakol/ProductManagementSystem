@@ -83,6 +83,15 @@ Use the following URLS with the curl to invoke the rest services:
 		`curl -i -X POST -H "Content-Type:application/json" http://localhost:8080/products/[id]/prices/ -d '{"price": 1000.10, "currency": "EGP"}'`
  
 
+
+### 3 - Using React client
+There is a very simple react client. The react page can be accessed using the link `http://localhost:8080/index.html`.
+At this point the client only support two simple functions
+1- Load of data from server when the page first open. Load all products that exists in DB.
+2- Add new product using, product name and product description Only. 
+
+ 
+
 ----
 
  
